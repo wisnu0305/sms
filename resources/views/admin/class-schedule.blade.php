@@ -48,20 +48,17 @@
 
         <div class="container">
             <a href="{{ route('create.class-schedule') }}" type="button" class="btn btn-primary"><i
-                class="flaticon2-add-1"></i><strong> Tambah Jadwal Pelajaran Kelas</strong></a>
-            
-                @foreach ($student_class as $studentClass)
+                    class="flaticon2-add-1"></i><strong> Tambah Jadwal Pelajaran Kelas</strong></a>
+
+            @foreach ($studentClasses as $studentClass)
                 <div class="card card-custom my-5 col-6">
                     <div class="card-body">
-                       <p> Kelas  {{ $studentClass->nama_kelas }} </p>
-
-                       <a href="{{ route('edit.class-schedule', ['id' => $studentClass->id]) }}"><i class="flaticon2-edit mr-3">Edit</i></a>
-
-
-                        
+                        <p> Kelas {{ $studentClass->nama_kelas }} </p>
+                        <a href="{{ route('edit.class-schedule', ['id' => $studentClass->id]) }}"><i
+                                class="flaticon2-edit mr-3">Edit</i></a>
                     </div>
                 </div>
-                 @endforeach
+            @endforeach
             {{-- <div class="card card-custom my-5 col-6">
                 <div class="card-body">
                     

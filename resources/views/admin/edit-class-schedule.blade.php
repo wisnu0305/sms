@@ -45,7 +45,7 @@
 
     <!-- Main content -->
     <div class="content">
-        
+
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('update.class-schedule', ['id_class' => $class->id_class]) }}" method="POST">
@@ -71,59 +71,57 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($lessonHours as $lh)
-                            <tr>
-                                <td>{{ $lh->waktu }}
-                                    <input type="hidden" name="id_lesson_hours" value="{{  $lh->id }}"></td>
-                                <!-- ... -->
-                                @for($j = 1; $j <= 6; $j++)
-                                @php
-                                $hari = '';
-                                switch($j) {
-                                    case 1:
-                                        $hari = "senin";
-                                        break;
-                                    case 2:
-                                        $hari = "selasa";
-                                        break;
-                                    case 3:
-                                        $hari = "rabu";
-                                        break;
-                                    case 4:
-                                        $hari = "kamis";
-                                        break;
-                                    case 5:
-                                        $hari = "jumat";
-                                        break;
-                                    case 6:
-                                        $hari = "sabtu";
-                                        break;
-                                    default:
-                                        $hari = "";
-                                }
-                                @endphp
-                                <td>
-                                
-                                    <input type="hidden" name="id_class" value="{{ $class->id }}">
-                                    <input type="hidden" name="hari" value="{{ $hari }}">
-                                    
-                                    <select class="form-control" name="id_course" id="id_course">
-                                        <option value="" disabled selected hidden>Pilih Mapel</option>
-                                        @foreach ($courses as $course)
-                                            <option value="{{ $course->id }}">{{ $course->nama_mapel }}</option>
-                                        @endforeach
-                                    </select>
-                                
-                                </td>
-                                @endfor
-                            </tr>
-                            @endforeach            
+                            @foreach ($lessonHours as $lh)
+                                <tr>
+                                    <td>{{ $lh->waktu }}
+                                        <input type="hidden" name="id_lesson_hours" value="{{ $lh->id }}">
+                                    </td>
+                                    <!-- ... -->
+                                    @for ($j = 1; $j <= 6; $j++)
+                                        @php
+                                            $hari = '';
+                                            switch ($j) {
+                                                case 1:
+                                                    $hari = 'senin';
+                                                    break;
+                                                case 2:
+                                                    $hari = 'selasa';
+                                                    break;
+                                                case 3:
+                                                    $hari = 'rabu';
+                                                    break;
+                                                case 4:
+                                                    $hari = 'kamis';
+                                                    break;
+                                                case 5:
+                                                    $hari = 'jumat';
+                                                    break;
+                                                case 6:
+                                                    $hari = 'sabtu';
+                                                    break;
+                                                default:
+                                                    $hari = '';
+                                            }
+                                        @endphp
+                                        <td>
+                                            <input type="hidden" name="id_class" value="{{ $class->id }}">
+                                            <input type="hidden" name="hari" value="{{ $hari }}">
+                                            <select class="form-control" name="id_course" id="id_course">
+                                                <option value="" disabled selected hidden>Pilih Mapel</option>
+                                                @foreach ($courses as $course)
+                                                    <option value="{{ $course->id }}">{{ $course->nama_mapel }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    @endfor
+                                </tr>
+                            @endforeach
                         </tbody>
-                        
                     </table>
-                    <div class="text-right"> 
-                        <a href="{{ route('admin.class-schedule') }}" class="btn btn-outline-danger mr-2" role="button">Batal</a> 
-                        <button type="submit" class="btn btn-primary">Simpan</button> 
+                    <div class="text-right">
+                        <a href="{{ route('admin.class-schedule') }}" class="btn btn-outline-danger mr-2"
+                            role="button">Batal</a>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>

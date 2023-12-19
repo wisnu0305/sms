@@ -15,7 +15,7 @@ class CreateTblLessonHoursTable extends Migration
     {
         Schema::create('tbl_lesson_hours', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('jam');
+            $table->integer('jam')->unique();;
             $table->string('waktu');
             $table->timestamps();
         });

@@ -59,19 +59,19 @@
                         <div class="form-group">
                             <label for="nis">NIS</label>
                             <input type="text" name="nis" id="nis" class="form-control" required="required"
-                                placeholder="Masukkan nomor induk siswa">
+                                placeholder="Masukkan nomor induk siswa" value="{{ old('nis') }}">
                         </div>
 
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" name="nama" id="nama" class="form-control"
-                                placeholder="Masukkan nama siswa">
+                                placeholder="Masukkan nama siswa" value="{{ old('nama') }}">
                         </div>
 
                         <div class="form-group">
                             <label for="id_kelas">Class</label>
                             <select class="form-control" name="id_kelas" id="id_kelas">
-                                <option value="" disabled selected hidden>Pilih Kelas</option>
+                                <option value="{{ old('id_kelas') }}" disabled selected hidden>Pilih Kelas</option>
                                 @foreach ($student_classes as $student_class)
                                     <option value="{{ $student_class->id }}">{{ $student_class->nama_kelas }}</option>
                                 @endforeach
@@ -81,13 +81,13 @@
                         <div class="form-group">
                             <label for="tempat_lahir">Tempat Lahir</label>
                             <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control"
-                                placeholder="Masukkan tempat lahir siswa">
+                                placeholder="Masukkan tempat lahir siswa" value="{{ old('tempat_lahir') }}">
                         </div>
 
                         <div class="form-group">
                             <label for="tanggal_lahir">Tanggal Lahir</label>
                             <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control"
-                                placeholder="Masukkan tanggal lahir siswa">
+                                placeholder="Masukkan tanggal lahir siswa" value="{{ old('tanggal_lahir') }}">
                         </div>
 
                         <div class="form-group">
@@ -101,7 +101,7 @@
                         <div class="form-group">
                             <label for="nama_ortu">Nama Orang Tua</label>
                             <input type="text" name="nama_ortu" id="nama_ortu" class="form-control"
-                                placeholder="Masukkan nama orang tua siswa">
+                                placeholder="Masukkan nama orang tua siswa" value="{{ old('nama_ortu') }}">
                         </div>
 
                         <div class="form-group">

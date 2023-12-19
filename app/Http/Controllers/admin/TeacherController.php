@@ -20,11 +20,11 @@ class TeacherController extends Controller
         $perPage = $request->input('per_page', 5);
         $teachers = Teacher::where(function ($query) use ($search) {
             $query->where('nip', 'like', "%$search%")
-                  ->orWhere('nama', 'like', "%$search%")
-                  ->orWhere('jk', 'like', "%$search%")
-                  ->orWhere('alamat', 'like', "%$search%");
+                ->orWhere('nama', 'like', "%$search%")
+                ->orWhere('jk', 'like', "%$search%")
+                ->orWhere('alamat', 'like', "%$search%");
         })
-        ->paginate($perPage);
+            ->paginate($perPage);
         // $teachers = Teacher::all();
         return view('admin.teacher', compact('teachers'));
         // return view('admin.teacher')->with('teachers', $teachers);
@@ -55,18 +55,11 @@ class TeacherController extends Controller
             'tanggal_lahir' => 'required|date',
             'jk' => 'required|string|max:20',
             'alamat' => 'required|string',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ])->validate();
 
-        if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $path = $file->move(public_path().'/uploads/teachers', $fileName);
-    
-            $teacher = new Teacher($validateData);
-            $teacher->foto = $fileName; 
-            $teacher->save();
-        }
+        $teacher = new Teacher($validateData);
+        $teacher->save();
+        
         return redirect(route('admin.teacher'))->with('success', 'Data Berhasil Ditambahkan');
     }
 
@@ -118,17 +111,17 @@ class TeacherController extends Controller
         $teacher->tanggal_lahir = $validateData['tanggal_lahir'];
         $teacher->jk = $validateData['jk'];
         $teacher->alamat = $validateData['alamat'];
-        
+
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $path = $file->storeAs('public/uploads/teachers', $fileName);
-    
+
             if ($teacher->foto) {
                 Storage::delete('public/uploads/teachers/' . $teacher->foto);
             }
-    
+
             $teacher->foto = $fileName;
         }
 
@@ -145,7 +138,7 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        $teacher->delete(); 
+        $teacher->delete();
         return redirect(route('admin.teacher'))->with('success', 'Data Berhasil Dihapus');
     }
 }
